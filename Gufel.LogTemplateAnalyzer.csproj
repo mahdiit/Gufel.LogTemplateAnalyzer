@@ -6,6 +6,7 @@
 
     <!-- NuGet metadata -->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
     <PackageId>Gufel.LogTemplateAnalyzer</PackageId>
     <Version>1.0.0</Version>
     <Authors>Mehdi Yousefi</Authors>
@@ -13,14 +14,11 @@
     <Description>Roslyn analyzer enforcing PascalCase for properties in structured logging message templates.</Description>
     <PackageProjectUrl>https://github.com/mahdiit/Gufel.LogTemplateAnalyzer</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mahdiit/Gufel.LogTemplateAnalyzer</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
     <PackageTags>roslyn; analyzer; logging; serilog; pascalcase</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<PackageIcon>icon.jpg</PackageIcon>
-    
-	<!-- Analyzer packaging -->
-    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,9 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Pack the analyzer assembly into the analyzers folder -->
-    <Analyzer Include="$(TargetPath)" />
-    <None Include="$(TargetDir)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+     <!--Pack the analyzer assembly into the analyzers folder-->
+     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" />
   </ItemGroup>
 
 </Project>
