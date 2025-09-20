@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+
+    <!-- NuGet metadata -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId></PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Mehdi Yousefi</Authors>
+    <Title>Gufel LogTemplate Analyzer</Title>
+    <Description>Roslyn analyzer enforcing PascalCase for properties in structured logging message templates.</Description>
+    <PackageProjectUrl>https://github.com/mahdiit/gold-calculator-extension</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mahdiit/gold-calculator-extension</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>roslyn; analyzer; logging; serilog; pascalcase</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+	<PackageIcon>icon.jpg</PackageIcon>
+    
+	<!-- Analyzer packaging -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
+
+    <!-- Make README and LICENSE appear in the package root -->
+    <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="LICENSE" Pack="true" PackagePath="" />
+    <None Include="icon.jpg" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Pack the analyzer assembly into the analyzers folder -->
+    <Analyzer Include="$(TargetPath)" />
+    <None Include="$(TargetDir)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+  </ItemGroup>
+
+</Project>
