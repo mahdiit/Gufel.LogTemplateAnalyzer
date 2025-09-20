@@ -3,4 +3,4 @@
 ### New Rules
 Rule ID | Category | Severity | Notes
 --------|----------|----------|------
-LTA001  | Naming   | Error    | Log template properties must use PascalCase
+GLT001  | Naming   | Error    | Log template properties must use PascalCase
